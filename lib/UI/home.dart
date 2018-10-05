@@ -262,10 +262,11 @@ class HomeState extends State<Home> {
   }
 
   double calculateWeight(String weight, double multiplier) {
-    if (int.parse(weight).toString().isNotEmpty && int.parse(weight) > 0) {
+    if (weight.isNotEmpty && int.parse(weight) > 0) {
       return int.parse(weight) * multiplier;
     } else {
-      print("Invalid weight");
+      SnackBar(content: Text("Please enter a weight"));
+      print("Please enter a weight");
     }
 
     return int.parse("189") * 0.38;
