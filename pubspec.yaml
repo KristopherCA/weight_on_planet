@@ -33,15 +33,7 @@ flutter:
   uses-material-design: true
 
   assets:
-   - images/planets/earth.png
-   - images/planets/jupiter.png
-   - images/planets/mars.png
-   - images/planets/planetx.png
-   - images/planets/mercury.png
-   - images/planets/neptune.png
-   - images/planets/saturn.png
-   - images/planets/uranus.png
-   - images/planets/venus.png
+   - images/planets/
 
 
 
