@@ -96,6 +96,8 @@ class HomeState extends State<Home> {
 
       if (_weightController.text.isEmpty) {
         _scaffoldKey.currentState.showSnackBar(_snackBar);
+        FocusScope.of(context).requestFocus(new FocusNode());
+
       }
     });
   }
