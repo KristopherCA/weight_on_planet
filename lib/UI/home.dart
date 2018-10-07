@@ -24,7 +24,8 @@ class HomeState extends State<Home> {
   weight = mass * multiplier
 
   */
-
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
+  final _snackBar = SnackBar(content: Text('Please Enter Your Weight before choosing a planet!'), backgroundColor: Colors.black38 ,);
   final TextEditingController _weightController = TextEditingController();
   int _radioValue;
   double _finalResult = 0.0;
@@ -92,12 +93,17 @@ class HomeState extends State<Home> {
       if (_radioValue >= 0) {
         FocusScope.of(context).requestFocus(new FocusNode());
       }
+
+      if (_weightController.text.isEmpty) {
+        _scaffoldKey.currentState.showSnackBar(_snackBar);
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text("Weight On Planet X"),
         centerTitle: true,
@@ -247,7 +253,7 @@ class HomeState extends State<Home> {
                   Text(
                       _weightController.text.toString().isNotEmpty
                           ? "$_formattedText" 'lbs'
-                          : "Find Your Weight",
+                          : "Find Your Weight on:",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
@@ -262,13 +268,10 @@ class HomeState extends State<Home> {
   }
 
   double calculateWeight(String weight, double multiplier) {
-    if (weight.isNotEmpty && int.parse(weight) > 0) {
+    if (weight.isNotEmpty && _radioValue > 0) {
       return int.parse(weight) * multiplier;
     } else {
-      SnackBar(content: Text("Please enter a weight"));
-      print("Please enter a weight");
+      return int.parse("189") * 0.38;
     }
-
-    return int.parse("189") * 0.38;
   }
 }
