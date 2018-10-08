@@ -23,14 +23,18 @@ class HomeState extends State<Home> {
   surface gravity formula:
   weight = mass * multiplier
 
+
+
   */
-  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
-  final _snackBar = SnackBar(content: Text('Please Enter Your Weight before choosing a planet!'), backgroundColor: Colors.black38 ,);
+
+
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   final TextEditingController _weightController = TextEditingController();
   int _radioValue;
   double _finalResult = 0.0;
   String _imagePath = 'images/planets/planetx.png';
   String _formattedText = "";
+
 
   void handleRadioValueChanged(int value) {
     setState(() {
@@ -94,11 +98,19 @@ class HomeState extends State<Home> {
         FocusScope.of(context).requestFocus(new FocusNode());
       }
 
+      final _snackBar = SnackBar(
+        content: Text('Please enter your wweight before choosing a planet!'),
+        backgroundColor: Colors.black38,
+        duration: Duration( seconds: 5),
+        action: SnackBarAction(label: 'OK', onPressed: _okPress,),
+      );
+
       if (_weightController.text.isEmpty) {
         _scaffoldKey.currentState.showSnackBar(_snackBar);
-        FocusScope.of(context).requestFocus(new FocusNode());
-
       }
+
+
+
     });
   }
 
@@ -276,4 +288,10 @@ class HomeState extends State<Home> {
       return int.parse("189") * 0.38;
     }
   }
+  
+  void _okPress() {
+    FocusScope.of(context).requestFocus(new FocusNode());
+
+  }
+
 }
